@@ -1,0 +1,41 @@
+.TH Project 2
+.SH Sypnosis
+Implement a MemoryManager in C+.
+.SH Description
+For the purpose of creating the MemoryManager, I created a
+.B "Block"
+struct to keep track of each block's occupied/empty, offset, size and address. Inside of the MemoryManager class, I created a variable for wordSize, memoryLimit and the function variable to keep track of which algorithm the memory manager is going to implement. Inside of MemoryManager class, I created a std::list of blocks called the 'tracker' which holds all the blocks information and char* called BigBlock that will keep the locations of the blocks. The
+.B Constructor Function
+in MemoryManager, initializes the wordSize parameter to the wordSize variable, initializes the allocator, and assigns the bigBlock array to nullptr. The
+.B Shutdown Function
+in MemoryManager, makes sure that if the bigBlock is not empty, make it empty and also clear the tracker list. The
+.B Initialize Function
+in MemoryManager, calls shutdown, sets the memoryLimit variable, initiates the bigBlock char array to have the size of memoryLimit, and pushes in a empty block into tracker list with the given sizeInWords, the offSet as 0, and occupied to false. The 
+.B Allocate Function
+in the MemoryManager, obtains sizeInWords based on sizeInBytes given by the parameter, finds an offset to allocate the new block based on the allocator algorithm. After the allocator finds an offset, it creates a block and adds into the tracker. The
+.B Free Function
+in the MemoryManager, frees the block of memory from the tracker list by the address given. Free also takes care of merging adjacent holes together. The
+.B SetAllocator Function
+in the MemoryManager sets the allocator algorithm to the parameter that is being passed. The 
+.B DumpMemoryMap
+in the MemoryManager takes in the filename and opens the file, writes list of holes in format and closes the file. The
+.B GetList Function
+in the MemoryManager class goes through the std::list of blocks, makes a new list with only the holes, creates an array following the format and returns the array. The
+.B GetBigMap Function
+in the MemoryManager creates a vector of 1s(for allocated) and 0s(for holes) for  each block, make groups of 8 to represent bytes, reverses the vector to represent little endian, converts to decimal values and creates an array using the required format. The
+.B GetWordSize Function
+in the MemoryManager returns the wordSize variable. The
+.B GetMemoryStart Function
+inside the MemoryManager returns the bigBlock address. The
+.B GetMemoryLimit Fuction
+inside the MemoryManager just returns the memoryLimit variable. The
+.B BestFit Function
+receives the sizeInWords and the array from the GetList function, and looks at the sizes, returns offSet that best fits hole. The
+.B WorstFit Function
+receives the sizeInWords and the array from the GetList function, and looks at the sizes, returns the offSet of the largest hole.
+.SH Bugs
+I encounter lots of errors with pointers and memory being leaked in my program.
+.SH Link
+https://drive.google.com/file/d/1I_E8acW7528Lz7VGoLkD8Jw1Nz40qVcu/view?usp=sharing
+.SH Author
+Valentina Cuencas
