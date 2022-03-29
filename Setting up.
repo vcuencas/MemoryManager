@@ -1,0 +1,4 @@
+1. If compiling with an IDE, all three files in the same folder, no need for makefile.
+2. If compiling on a VM using linux, create a directory for the Makefile, MemoryManager.cpp and MemoryManager.h. 
+The CommandLineTest will go outside the directory. Use command (g++ -std=c++17 -o CommandLineTest CommandLineTest.cpp -L ./MemoryManager -LMemoryManager
+to compile the CommandLineTest file. 
